@@ -6,6 +6,7 @@
         Listar = 2,
         Remover = 3,
         Buscar = 4,
+        Editar = 5,
     }
 
 }

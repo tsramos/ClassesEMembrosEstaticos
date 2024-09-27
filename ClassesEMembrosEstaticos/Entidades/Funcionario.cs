@@ -21,5 +21,11 @@ namespace ClassesEMembrosEstaticos.Entidades
                 Entrada = true;
             }
         }
+
+        public override string ImprimeDadosPessoais()
+        {
+            string dados =  base.ImprimeDadosPessoais().ToString();
+            return dados + $"\nMatricula: {Matricula}\nCargo: {Cargo}";
+        }
     }
 }

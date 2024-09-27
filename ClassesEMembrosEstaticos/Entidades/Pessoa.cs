@@ -32,10 +32,9 @@ namespace ClassesEMembrosEstaticos.Entidades
             Cpf = cpf;
             Ativo = true;
         }
-
-
-        public string ImprimePessoa()
-        {
+        
+        public virtual string ImprimeDadosPessoais()
+        {            
             return $"Nome: {Nome}\n" +
                 $"Idade : {DateTime.Now.Year - Nascimento.Year}\n" +
                 $"Cpf: {Cpf}";
