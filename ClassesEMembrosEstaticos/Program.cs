@@ -28,7 +28,7 @@ namespace ClassesEMembrosEstaticos
                 Cpf = "6545646565456",
                 Matricula = 156456,
                 Cargo = "Estudante para estagiario"
-            }            
+            }
         };
 
 
@@ -56,7 +56,7 @@ namespace ClassesEMembrosEstaticos
                         ImprimeDados();
                         break;
                     case Menu.Remover:
-                        ImprimeFuncionarios();
+                        Imprime(pessoas);
                         break;
                     case Menu.Buscar:
                         break;
@@ -73,26 +73,40 @@ namespace ClassesEMembrosEstaticos
             }
         }
 
-        public  static void ImprimeFuncionarios()
+        public static void Imprime(List<Pessoa> pessoas)
         {
-            List<Pessoa> funcioarios = pessoas.Where(x => x is Funcionario).ToList();
-            foreach (var funcioario in funcioarios)
+            List<Cliente> cli = new List<Cliente>();
+            List<Funcionario> func = new List<Funcionario>();
+            foreach (var pessoa in pessoas)
             {
-                Console.WriteLine(funcioario.ImprimeDadosPessoais());
+                if (pessoa is Cliente)
+                    cli.Add(pessoa as Cliente);
+
+                else if (pessoa is Funcionario)
+                    func.Add(pessoa as Funcionario);
             }
+
+            Console.WriteLine("Clientes:");
+            foreach (var cliente in cli)
+            {
+                Console.WriteLine(cliente.ImprimeDadosPessoais());
+            }
+
+            Console.WriteLine("Funcionarios");
+            func.ForEach(funcionario => Console.WriteLine(funcionario.ImprimeDadosPessoais()));
         }
 
         public static void ImprimeDados()
         {
             foreach (var pessoa in pessoas)
             {
-               Console.WriteLine(pessoa.ImprimeDadosPessoais());
+                Console.WriteLine(pessoa.ImprimeDadosPessoais());
             }
         }
 
         public static void EditarPessoa()
         {
-            foreach(var pessoa in pessoas)
+            foreach (var pessoa in pessoas)
             {
                 Console.WriteLine($"Id: {pessoa.Id} | Nome : {pessoa.Nome}");
             }
@@ -102,13 +116,13 @@ namespace ClassesEMembrosEstaticos
 
             Pessoa p = pessoas.FirstOrDefault(p => p.Id == id);
 
-            if(p is Cliente)
+            if (p is Cliente)
             {
                 Cliente cliente = p as Cliente;
                 Console.WriteLine("Informe a nova data de cadastro");
-                cliente.DataCadastro = new DateTime(2030/12/12);
+                cliente.DataCadastro = new DateTime(2030 / 12 / 12);
             }
-            else if(p is Funcionario)
+            else if (p is Funcionario)
             {
                 Funcionario funcionario = p as Funcionario;
                 funcionario.Cargo = "Desenvolvedor Senior (do estagio)";
